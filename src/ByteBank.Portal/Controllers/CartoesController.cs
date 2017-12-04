@@ -21,20 +21,29 @@ namespace ByteBank.Portal.Controllers
 
         public string Credito()
         {
-            var view = GetFileContent("ByteBank.Portal.View.Cartoes.Credito.html");
             var creditCard = _cardService.GetFeaturedCreditCard();
+            // Primeiro usamos a abordagem
+            //    public class CartaoModel { public string CartaoDestaque { get; set; } } 
+            //    var model = new CartaoModel();
+            //    model.CartaoDestaque = creditCard;
+            //
+            // Em seguida
+            //    dynamic model; 
+            //    model.CartaoDestaque = creditCard; 
+            //
+            // Enfim
+            //    new { CartaoDestaque = creditCard }; <- oportunidade de dizer dynamicModel.method()
+            var model = new { CartaoDestaque = creditCard };
 
-            view = view.Replace("CARTAO_EM_DESTAQUE", creditCard);
-            return view;
+            return View(model);
         }
 
         public string Debito()
         {
-            var view = GetFileContent("ByteBank.Portal.View.Cartoes.Debito.html");
             var debitCard = _cardService.GetFeaturedDebitCard();
+            var model = new { CartaoDestaque = debitCard };
 
-            view = view.Replace("CARTAO_EM_DESTAQUE", debitCard);
-            return view;
+            return View(model);
         }
     }
 }

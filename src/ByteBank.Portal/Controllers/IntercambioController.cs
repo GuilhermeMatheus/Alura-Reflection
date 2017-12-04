@@ -20,18 +20,14 @@ namespace ByteBank.Portal.Controllers
 
         public string MXN()
         {
-            var view = GetFileContent("ByteBank.Portal.View.Intercambio.MXN.html");
             var exchangeValue = _exchangeService.Calc(1, "MXN", "BRL");
-            view = view.Replace("VALOR_EM_REAL", exchangeValue.ToString());
-            return view;
+            return View(new { ValorEmReal = exchangeValue });
         }
 
         public string USD()
         {
-            var view = GetFileContent("ByteBank.Portal.View.Intercambio.USD.html");
             var exchangeValue = _exchangeService.Calc(1, "USD", "BRL");
-            view = view.Replace("VALOR_EM_REAL", exchangeValue.ToString());
-            return view;
+            return View(new { ValorEmReal = exchangeValue });
         }
     }
 }
