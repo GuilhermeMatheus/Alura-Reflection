@@ -46,6 +46,7 @@
     <Compile Include="Controllers\CartoesController.cs" />
     <Compile Include="Controllers\IntercambioController.cs" />
     <Compile Include="Infrastructure\ControllerBase.cs" />
+    <Compile Include="Infrastructure\ControllerRequestHandler.cs" />
     <Compile Include="Infrastructure\FileRequestHandler.cs" />
     <Compile Include="Infrastructure\PageFromStringRequestHandler.cs" />
     <Compile Include="Infrastructure\PageRequestHandler.cs" />
