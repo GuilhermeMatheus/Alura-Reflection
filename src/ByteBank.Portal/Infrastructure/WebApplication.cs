@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ByteBank.Portal.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -43,6 +44,34 @@ namespace ByteBank.Portal.Infrastructure
                     var handler = new FileRequestHandler();
                     handler.Handle(response, request.Url.LocalPath);
                 }
+                else if (request.Url.LocalPath.StartsWith("/Intercambio/USD"))
+                {
+                    var controller = new IntercambioController();
+                    var page = controller.USD();
+                    var handler = new PageFromStringRequestHandler(page);
+                    handler.Handle(response, request.Url.LocalPath);
+                }
+                else if (request.Url.LocalPath.StartsWith("/Intercambio/MXN"))
+                {
+                    var controller = new IntercambioController();
+                    var page = controller.MXN();
+                    var handler = new PageFromStringRequestHandler(page);
+                    handler.Handle(response, request.Url.LocalPath);
+                }
+                else if (request.Url.LocalPath.StartsWith("/Cartoes/Credito"))
+                {
+                    var controller = new CartoesController();
+                    var page = controller.Credito();
+                    var handler = new PageFromStringRequestHandler(page);
+                    handler.Handle(response, request.Url.LocalPath);
+                }
+                else if (request.Url.LocalPath.StartsWith("/Cartoes/Debito"))
+                {
+                    var controller = new CartoesController();
+                    var page = controller.Debito();
+                    var handler = new PageFromStringRequestHandler(page);
+                    handler.Handle(response, request.Url.LocalPath);
+                }
                 else
                 {
                     var handler = new PageRequestHandler();
@@ -62,7 +91,5 @@ namespace ByteBank.Portal.Infrastructure
 
             return lastPart.Contains('.');
         }
-
-       
     }
 }

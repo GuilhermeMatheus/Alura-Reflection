@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +28,17 @@ namespace ByteBank.Portal.Utils
             var resourceNamespace = "ByteBank.Portal";
             var resourcePath = path.Replace('/', '.');
             return $"{resourceNamespace}{resourcePath}";
+        }
+
+        public static string GetEmbeddedResourceContent(string fullQualifiedName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceStream = assembly.GetManifestResourceStream(fullQualifiedName);
+
+            var reader = new StreamReader(resourceStream);
+            var result = reader.ReadToEnd();
+
+            return result;
         }
     }
 }
