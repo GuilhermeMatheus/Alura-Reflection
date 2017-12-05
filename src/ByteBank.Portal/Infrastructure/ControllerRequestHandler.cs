@@ -1,4 +1,6 @@
 ﻿using ByteBank.Portal.Infrastructure.Binding;
+using ByteBank.Portal.Infrastructure.Controllers;
+using ByteBank.Portal.Infrastructure.IoC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +15,18 @@ namespace ByteBank.Portal.Infrastructure
     public class ControllerRequestHandler
     {
         private readonly ActionBinder _actionBinder = new ActionBinder();
+        private readonly ControllerFactory _controllerFactory;
+
+        public ControllerRequestHandler(IContainer container)
+        {
+            _controllerFactory = new ControllerFactory(container);
+        }
 
         public void Handle(HttpListenerResponse response, string localPath)
         {
             var portions = localPath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var controllerClassName = $"{portions[0]}Controller";
-            var controllerFullClassName = $"ByteBank.Portal.Controllers.{controllerClassName}";
-
-            // Explicar o que é um ObjectHandle
-            var controller = Activator.CreateInstance("ByteBank.Portal", controllerFullClassName);
-            var realController = controller.Unwrap();
+            var realController = _controllerFactory.GetController(portions[0]);
 
             var actionName = portions[1];
             var actionBindInfo = _actionBinder.GetActionBindInfo(actionName, realController);

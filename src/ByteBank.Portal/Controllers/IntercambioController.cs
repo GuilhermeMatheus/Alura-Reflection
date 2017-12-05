@@ -12,10 +12,12 @@ namespace ByteBank.Portal.Controllers
     public class IntercambioController : ControllerBase
     {
         private readonly IExchangeService _exchangeService;
+        private readonly ICardService _cardService;
 
-        public IntercambioController()
+        public IntercambioController(IExchangeService exchangeService, ICardService cardService)
         {
-            _exchangeService = new RealTimeExchangeService();
+            _exchangeService = exchangeService;
+            _cardService = cardService;
         }
 
         public string MXN()
@@ -36,7 +38,8 @@ namespace ByteBank.Portal.Controllers
             return View(new {
                 Valor = value,
                 MoedaOrigem = from,
-                ValorEmReal = exchangeValue
+                ValorEmReal = exchangeValue,
+                CartaoPromocao = _cardService.GetFeaturedCreditCard()
             });
         }
     }

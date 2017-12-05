@@ -1,4 +1,8 @@
 ﻿using ByteBank.Portal.Controllers;
+using ByteBank.Portal.Infrastructure.IoC;
+using ByteBank.Services;
+using ByteBank.Services.Card;
+using ByteBank.Services.Exchange;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +19,7 @@ namespace ByteBank.Portal.Infrastructure
     public class WebApplication
     {
         private readonly string[] _prefixes;
+        private readonly IContainer _container = new SimpleContainer();
 
         public WebApplication(string[] prefixes)
         {
@@ -22,6 +27,13 @@ namespace ByteBank.Portal.Infrastructure
                 throw new ArgumentException("prefixes");
 
             _prefixes = prefixes;
+            Config();
+        }
+
+        private void Config()
+        {
+            _container.Register(typeof(ICardService), typeof(CardService));
+            _container.Register(typeof(IExchangeService), typeof(RealTimeExchangeService));
         }
 
         public void Start()
@@ -46,7 +58,7 @@ namespace ByteBank.Portal.Infrastructure
                 }
                 else
                 {
-                    var handler = new ControllerRequestHandler();
+                    var handler = new ControllerRequestHandler(_container);
                     handler.Handle(response, request.Url.PathAndQuery);
                 }
 

@@ -14,9 +14,9 @@ namespace ByteBank.Portal.Controllers
     {
         private readonly ICardService _cardService;
 
-        public CartoesController()
+        public CartoesController(ICardService cardService)
         {
-            _cardService = new CardService();
+            _cardService = cardService;
         }
 
         public string Credito()

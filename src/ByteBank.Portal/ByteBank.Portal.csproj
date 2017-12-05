@@ -53,7 +53,10 @@
     <Compile Include="Infrastructure\Binding\ArgumentPair.cs" />
     <Compile Include="Infrastructure\ControllerBase.cs" />
     <Compile Include="Infrastructure\ControllerRequestHandler.cs" />
+    <Compile Include="Infrastructure\Controllers\ControllerFactory.cs" />
     <Compile Include="Infrastructure\FileRequestHandler.cs" />
+    <Compile Include="Infrastructure\IoC\IContainer.cs" />
+    <Compile Include="Infrastructure\IoC\SimpleContainer.cs" />
     <Compile Include="Infrastructure\PageFromStringRequestHandler.cs" />
     <Compile Include="Infrastructure\PageRequestHandler.cs" />
     <Compile Include="Infrastructure\WebApplication.cs" />
