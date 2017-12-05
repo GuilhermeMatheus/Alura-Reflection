@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CartoesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\IntercambioController.cs" />
+    <Compile Include="Filters\OnlyBusinessHoursActionFilterAttribute.cs" />
     <Compile Include="Infrastructure\Binding\ActionBinder.cs" />
     <Compile Include="Infrastructure\Binding\ActionBindInfo.cs" />
     <Compile Include="Infrastructure\Binding\ArgumentPair.cs" />
@@ -55,6 +57,9 @@
     <Compile Include="Infrastructure\ControllerRequestHandler.cs" />
     <Compile Include="Infrastructure\Controllers\ControllerFactory.cs" />
     <Compile Include="Infrastructure\FileRequestHandler.cs" />
+    <Compile Include="Infrastructure\Filters\ActionFilterAttribute.cs" />
+    <Compile Include="Infrastructure\Filters\ActionFilterResult.cs" />
+    <Compile Include="Infrastructure\Filters\FilterResolver.cs" />
     <Compile Include="Infrastructure\IoC\IContainer.cs" />
     <Compile Include="Infrastructure\IoC\SimpleContainer.cs" />
     <Compile Include="Infrastructure\PageFromStringRequestHandler.cs" />
@@ -87,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Intercambio\Calculo.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Error\Index.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

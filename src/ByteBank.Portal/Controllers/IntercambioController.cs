@@ -1,4 +1,5 @@
-﻿using ByteBank.Portal.Infrastructure;
+﻿using ByteBank.Portal.Filters;
+using ByteBank.Portal.Infrastructure;
 using ByteBank.Services;
 using ByteBank.Services.Exchange;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Portal.Controllers
 {
+    [OnlyBusinessHoursActionFilter]
     public class IntercambioController : ControllerBase
     {
         private readonly IExchangeService _exchangeService;
