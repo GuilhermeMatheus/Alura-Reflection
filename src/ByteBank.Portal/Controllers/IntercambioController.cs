@@ -29,5 +29,15 @@ namespace ByteBank.Portal.Controllers
             var exchangeValue = _exchangeService.Calc(1, "USD", "BRL");
             return View(new { ValorEmReal = exchangeValue });
         }
+
+        public string Calculo(string from, string to, decimal value)
+        {
+            var exchangeValue = _exchangeService.Calc(value, from, to);
+            return View(new {
+                Valor = value,
+                MoedaOrigem = from,
+                ValorEmReal = exchangeValue
+            });
+        }
     }
 }

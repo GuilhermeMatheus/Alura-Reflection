@@ -47,7 +47,7 @@ namespace ByteBank.Portal.Infrastructure
                 else
                 {
                     var handler = new ControllerRequestHandler();
-                    handler.Handle(response, request.Url.LocalPath);
+                    handler.Handle(response, request.Url.PathAndQuery);
                 }
 
                 response.OutputStream.Close();

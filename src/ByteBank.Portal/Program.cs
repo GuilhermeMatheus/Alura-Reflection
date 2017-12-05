@@ -10,30 +10,12 @@ using System.Web;
 
 namespace ByteBank.Portal
 {
-    public abstract class Dad
-    {
-        public void M()
-        {
-            "".ToString();
-        }
-    }
-
-    public class Child : Dad
-    {
-        public Child()
-        {
-            M();
-        }
-    }
-
     class Program
     {
         private static string[] prefixes = new[] { "http://bytebank.com:55345/" };
 
         static void Main(string[] args)
         {
-            new Child();
-
             var webApp = new WebApplication(prefixes);
             webApp.Start();
         }
