@@ -42,7 +42,7 @@ namespace ByteBank.Portal.Infrastructure.IoC
             if (_cache.ContainsKey(type))
                 return _cache[type];
 
-            if (type.IsInterface || type.IsAbstract)
+            if (_typeMap.ContainsKey(type))
             {
                 var targetType = _typeMap[type];
                 return Retrieve(targetType);
