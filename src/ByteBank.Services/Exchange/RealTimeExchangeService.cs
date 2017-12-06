@@ -8,7 +8,9 @@ namespace ByteBank.Services.Exchange
 {
     public class RealTimeExchangeService : IExchangeService
     {
+        private static Random _rdm = new Random();
+
         public decimal Calc(decimal value, string from, string to) =>
-            value * 0.8m;
+            value* (decimal) _rdm.NextDouble();
     }
 }
