@@ -32,7 +32,7 @@ namespace ByteBank.Portal.Infrastructure
             var matches = regex.Matches(rawView);
 
             var bindedView = regex.Replace(rawView, (match) => {
-                var propertyName = match.Value.Replace("{{", "").Replace("}}", "");
+                var propertyName = match.Groups[1].Value;
                 var propertyInfo = allModelProperties.First(_ => _.Name == propertyName);
 
                 var value = propertyInfo.GetValue(model);
